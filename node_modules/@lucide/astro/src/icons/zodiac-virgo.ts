@@ -1,0 +1,18 @@
+
+import createLucideIcon from '../createLucideIcon';
+import type { AstroComponent } from '../types'
+
+/**
+ * @component @name ZodiacVirgo
+ * @description Lucide SVG icon component, renders SVG Element with children.
+ *
+ * @preview ![img](data:image/svg+xml;base64,PHN2ZyAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzAwMCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDJweCIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTEgNS41YTEgMSAwIDAgMSA1IDBWMTZhNSA1IDAgMCAwIDUgNSIgLz4KICA8cGF0aCBkPSJNMTYgMTEuNWExIDEgMCAwIDEgNSAwVjE2YTUgNSAwIDAgMS01IDUiIC8+CiAgPHBhdGggZD0iTTYgMTlWNmEzIDMgMCAwIDAtMy0zaDAiIC8+CiAgPHBhdGggZD0iTTYgNS41YTEgMSAwIDAgMSA1IDBWMTkiIC8+Cjwvc3ZnPgo=) - https://lucide.dev/icons/zodiac-virgo
+ * @see https://lucide.dev/guide/packages/lucide-astro - Documentation
+ *
+ * @param {import('../types').IconProps} props - Lucide icons props and any valid SVG attribute
+ * @returns {any} Astro Component
+ * 
+ */
+const ZodiacVirgo = createLucideIcon('zodiac-virgo', [["path",{"d":"M11 5.5a1 1 0 0 1 5 0V16a5 5 0 0 0 5 5"}],["path",{"d":"M16 11.5a1 1 0 0 1 5 0V16a5 5 0 0 1-5 5"}],["path",{"d":"M6 19V6a3 3 0 0 0-3-3h0"}],["path",{"d":"M6 5.5a1 1 0 0 1 5 0V19"}]]) as AstroComponent;
+
+export default ZodiacVirgo;

@@ -1,0 +1,165 @@
+---
+import { GraduationCap, Mail } from '@lucide/astro';
+import PublicationExplorer from '../components/PublicationExplorer';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile, publicationTopics, publications, services, talks } from '../lib/content';
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function isSafeLink(url: string) {
+  if (url.startsWith('/')) return true;
+
+  try {
+    const parsed = new URL(url);
+    return ['http:', 'https:', 'mailto:'].includes(parsed.protocol);
+  } catch {
+    return false;
+  }
+}
+
+function renderInlineMarkdown(value: string) {
+  return escapeHtml(value).replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (_match, label: string, url: string) => {
+      const href = escapeHtml(url.trim());
+      if (!isSafeLink(url.trim())) return label;
+
+      return `<a href="${href}">${label}</a>`;
+    },
+  );
+}
+---
+
+<BaseLayout title={`${profile.name} | Academic Website`}>
+  <header class="site-header">
+    <a href="/" class="wordmark">{profile.name}</a>
+    <nav aria-label="Primary navigation">
+      <a href="#publications">Publications</a>
+      <a href="#services">Services</a>
+      <a href="#talks">Talks</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-section">
+      <div class="profile-copy">
+        <h1>{profile.name}</h1>
+        <p class="title">{profile.title}</p>
+        <figure class="headshot-placeholder">
+          {
+            profile.headshot.src ? (
+              <img src={profile.headshot.src} alt={profile.headshot.alt} />
+            ) : (
+              <span aria-hidden="true">{profile.headshot.initials}</span>
+            )
+          }
+        </figure>
+        <div class="profile-links">
+          {
+            profile.links.map((link) => (
+              <a
+                href={link.url}
+                class="profile-link"
+                aria-label={link.label}
+                title={link.label}
+              >
+                {link.icon === 'scholar' ? <GraduationCap size={17} aria-hidden="true" /> : null}
+                {link.icon === 'linkedin' ? (
+                  <span class="linkedin-mark" aria-hidden="true">
+                    in
+                  </span>
+                ) : null}
+                {link.icon === 'email' ? <Mail size={17} aria-hidden="true" /> : null}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="profile-details">
+        {profile.summary.map((item) => <p set:html={renderInlineMarkdown(item)} />)}
+        {
+          profile.highlights.length > 0 ? (
+            <ul class="highlights">
+              {profile.highlights.map((item) => (
+                <li set:html={renderInlineMarkdown(item)} />
+              ))}
+            </ul>
+          ) : null
+        }
+      </div>
+    </section>
+
+    <PublicationExplorer client:load publications={publications} topics={publicationTopics} />
+
+    <section class="section-grid" id="services" aria-labelledby="services-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Community</p>
+          <h2 id="services-title">Professional services</h2>
+        </div>
+      </div>
+      <div class="two-column">
+        <section>
+          <h3>Reviewing</h3>
+          <ul class="plain-list">
+            {services.reviewing.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h3>Organising</h3>
+          <ul class="plain-list">
+            {
+              services.organising.map((item) => (
+                <li>
+                  <a href={item.url}>{item.title}</a>
+                  <span>
+                    {item.venue}, {item.year}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="section-grid" id="talks" aria-labelledby="talks-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Speaking</p>
+          <h2 id="talks-title">Recent talks</h2>
+        </div>
+      </div>
+      <div class="talk-list">
+        {
+          talks.map((talk) => (
+            <article>
+              <h3>{talk.title}</h3>
+              <p>
+                {talk.venue}
+                {talk.date ? `, ${talk.date}` : talk.year ? `, ${talk.year}` : ''}
+              </p>
+              <div class="link-list">
+                {talk.url ? <a href={talk.url}>link</a> : null}
+                {talk.links.map((link) => (
+                  <a href={link.url}>{link.label}</a>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 {profile.name}</p>
+  </footer>
+</BaseLayout>

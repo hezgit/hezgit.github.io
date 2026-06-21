@@ -1,0 +1,24 @@
+name: He Zhao
+title: Seasoned ML/AI Researcher
+headshot:
+  initials: HZ
+  src: /images/headshot.jpg
+  alt: Headshot of He Zhao
+summary:
+  - Hello! This is my research page.
+  - I'm a machine learning and AI researcher at [CSIRO](https://www.csiro.au/en/) and an adjunct researcher at [Monash University](https://www.monash.edu/it/dsai). Previously, I obtained my PhD from the Department of Data Science and AI of Monash University and worked as a postdoc there.
+  - I started my research jouney on Bayesian machine learning in my PhD and then worked on representation learning via optimal transport in my postdoc. Now I have broad interests in causality, uncertainty, and robustness in machine learning on language, vision, and tabular data. For details, check out my papers and their topics below.
+  - I regularly serve as an area chair for NeurIPS, ICML, and ICLR, and I am on the editorial board of Machine Learning Journal. I am an IEEE Senior Member from 2026.
+highlights:
+  - My KDD 2023 [paper](https://dl.acm.org/doi/10.1145/3580305.3599343) won the [Best Student Paper Award](https://kdd.org/kdd2023/awards/).
+  - Asian Conference on Machine Learning (ACML) 2026 is [calling for tutorial proposals](https://www.acml-conf.org/2026/calls/tutorials/).
+links:
+  - label: Google Scholar
+    icon: scholar
+    url: https://scholar.google.com.au/citations?user=pkn0NPsAAAAJ&hl=en
+  - label: LinkedIn
+    icon: linkedin
+    url: https://www.linkedin.com/
+  - label: Email
+    icon: email
+    url: mailto:first_name[dot]last_name[at]ieee[dot]org
