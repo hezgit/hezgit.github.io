@@ -213,6 +213,18 @@ h3 {
   background: var(--chip);
 }
 
+button.profile-link {
+  min-height: 36px;
+}
+
+.email-address {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
 .profile-link svg {
   width: 17px;
   height: 17px;
